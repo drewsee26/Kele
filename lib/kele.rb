@@ -25,5 +25,19 @@ class Kele
         )
         
         parsed_response = JSON.parse(response.body)
-    end        
+        
+        return parsed_response
+    end  
+    
+    def get_mentor_availability(mentor_id)
+        mentor_id = 539470
+        
+        response = self.class.get(
+            "#{@base_uri}/mentors/#{mentor_id}/student_availability", headers: { "authorization" => @auth_token }, body: { id: mentor_id }
+        )
+        
+        schedule_array = JSON.parse(response.body)
+        
+        return schedule_array
+    end
 end
