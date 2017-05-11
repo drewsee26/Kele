@@ -12,14 +12,10 @@ module Roadmap
     end
         
     def get_checkpoint(checkpoint_id)
-        @checkpoint_id = 1606
-        
         response = self.class.get(
-            "#{@base_uri}/checkpoints/#{@checkpoint_id}", headers: { "authorization" => @auth_token }, body: { id: checkpoint_id }    
+            "#{@base_uri}/checkpoints/#{checkpoint_id}", headers: { "content_type" => 'application/json', "authorization" => @auth_token }  
         )
         
-        parsed_checkpoint = JSON.parse(response.body)
-        
-        return parsed_checkpoint
+        JSON.parse(response.body)
     end
 end
